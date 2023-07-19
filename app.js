@@ -6,15 +6,13 @@ submitbtn.addEventListener("click", function clickEventHandler(){
     console.log("Button Clicked");
 
    
-    var d = {day:3,
-            month:2,
-                year:2020};
+    var d = getDate();
 
                 if(checkPalindromeForAllForats(d)){
-                    console.log("Is palindrome");
+               
                 }
                 else{
-                    console.log("Not a palindrme");
+                   
 
                     var [chl,date] = nextPalindrome(d);
                     var [ph1,prevda] = prevPalindrome(d);
@@ -25,10 +23,10 @@ submitbtn.addEventListener("click", function clickEventHandler(){
                     if(ph1<chl){
                         rx = ph1;
                         if(rx === 1){
-                            outputs.innerText = "The previous palindrome was "+ph1 + "day behind on " +prevda.day + " " + prevda.month + " " +prevda.year;
+                            outputs.innerText = "The previous palindrome was "+ph1 + " day behind on " +prevda.day + "" + prevda.month + "" +prevda.year;
 
                         }else{
-                            outputs.innerText = "The previous palindrome was "+ph1 + "days behind on " +prevda.day + " " + prevda.month + " " +prevda.year;
+                            outputs.innerText = "The previous palindrome was "+ph1 + " days behind on " +prevda.day + "" + prevda.month + "" +prevda.year;
 
 
                         }
@@ -36,9 +34,9 @@ submitbtn.addEventListener("click", function clickEventHandler(){
                     }else{
                         rx= chl;
                         if(rx ===1 ){
-                            outputs.innerText = "The next palindrome is "+chl + " day further on " +date.day + " " + date.month + " " +date.year;
+                            outputs.innerText = "The next palindrome is "+chl + " day further on " +date.day + "" + date.month + "" +date.year;
                         }else{
-                            outputs.innerText = "The next palindrome is "+chl + " days further on  " +date.day + " " + date.month + " " +date.year;
+                            outputs.innerText = "The next palindrome is "+chl + " days further on  " +date.day + "" + date.month + "" +date.year;
 
                         }
                     

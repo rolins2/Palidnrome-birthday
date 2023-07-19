@@ -1,0 +1,47 @@
+input {
+    width: 50%;
+    font-size: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.2rem;
+    color: #333;
+    margin: 0.2rem 0;
+  }
+
+  button {
+    background: hsl(0, 0%, 20%);
+    color: white;
+    outline: none;
+    border: none;
+    font-size: 1.2rem;
+    padding: 0.7rem 2rem;
+    width: 100%;
+    max-width: 300px;
+    margin-top: 1rem;
+
+    border-radius: 0.2rem;
+    cursor: pointer;
+    
+  }
+
+  output {
+    border: 1px solid rgb(51, 51, 51);
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    padding: 1rem;
+    border-radius: 0.2rem;
+    background: rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    width: 100%;
+  }
+
+  body{
+    text-align: center;
+    background-color: wheat;
+  }
+
+  label{
+    font-weight: bold;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
