@@ -1,12 +1,19 @@
 const birthdate = document.querySelector("#date");
 const submitbtn = document.querySelector("#submit");
-const output = document.querySelector("#output");
+const outputs = document.querySelector("#output");
 
 submitbtn.addEventListener("click", function clickEventHandler(){
     console.log("Button Clicked");
-    var d = {day:5,
-            month:2,
+
+   
+    var d = {day:1,
+            month:1,
                 year:2020};
+
+
+                var f = getPrevDate(d);
+
+                console.log(f);
                 
 
                 if(checkPalindromeForAllForats(d)){
@@ -15,8 +22,14 @@ submitbtn.addEventListener("click", function clickEventHandler(){
                 else{
                     console.log("Not a palindrme");
 
-                    var [chl,date] = nextPalindrome(d)
-                    console.log(chl);
+                    var [chl,date] = nextPalindrome(d);
+
+                    outputs.innerText = "The next palindrome is "+chl + " on " +date.day + " " + date.month + " " +date.year;
+                    console.log(chl + "days away");
+                    console.log(date.day, date.month,date.year);
+
+                   
+                    
                 }
     
 })
@@ -34,6 +47,47 @@ function isLeapYear(year){
     return false;
 
 }
+
+function getPrevDate(date){
+    var day = date.day -1;
+    var month = date.month;
+    var year = date.year;
+
+    var daysInMonth = [31,28,31,30,31,30,31,31,30,31,30,31];
+
+    if(month === 3){
+        if(isLeapYear){
+            if(day < 1)
+            {
+                day = 29;
+                month --;
+            }
+            } 
+
+        }else{
+
+            console.log("in else loop");
+            if(day < 1)
+            {
+                day = daysInMonth[month -2];
+                month--;
+            }
+        } 
+        if(month < 1){
+            day = 31;
+            month = 12;
+            year --;
+
+        }
+        return {
+            day : day,
+            month: month,
+            year: year
+         }
+    }
+
+
+
 
 function getnextDate(date){
 
@@ -75,24 +129,33 @@ function getnextDate(date){
 
 }
 
+function prevPalindrome(date){
+    var prevDate =  getPrevDate(date);
+}
+
 function nextPalindrome(date){
+
+    
 
     var nextDate = getnextDate(date);
     var ctr=0;
 
     while(1){
-        ctr++;
-        var dateStr = dateToString(nextDate);
-        var reusltList = checkPalindromeForAllForats(dateStr);
 
-        for(var i =0;i< reusltList.length;i++){
-            if(reusltList){
-                return[ctr,nextDate];
-            }
+        ctr++;
+        var isPalindrome =checkPalindromeForAllForats(nextDate);
+
+        if (isPalindrome){
+            break;
         }
         nextDate = getnextDate(nextDate);
 
     }
+
+
+    return [ctr, nextDate];
+
+
 
 }
 
