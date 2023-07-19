@@ -6,15 +6,9 @@ submitbtn.addEventListener("click", function clickEventHandler(){
     console.log("Button Clicked");
 
    
-    var d = {day:1,
-            month:1,
+    var d = {day:3,
+            month:2,
                 year:2020};
-
-
-                var f = getPrevDate(d);
-
-                console.log(f);
-                
 
                 if(checkPalindromeForAllForats(d)){
                     console.log("Is palindrome");
@@ -23,10 +17,34 @@ submitbtn.addEventListener("click", function clickEventHandler(){
                     console.log("Not a palindrme");
 
                     var [chl,date] = nextPalindrome(d);
+                    var [ph1,prevda] = prevPalindrome(d);
+                    
+                  
+                    var rx = 0;
 
-                    outputs.innerText = "The next palindrome is "+chl + " on " +date.day + " " + date.month + " " +date.year;
-                    console.log(chl + "days away");
-                    console.log(date.day, date.month,date.year);
+                    if(ph1<chl){
+                        rx = ph1;
+                        if(rx === 1){
+                            outputs.innerText = "The previous palindrome was "+ph1 + "day behind on " +prevda.day + " " + prevda.month + " " +prevda.year;
+
+                        }else{
+                            outputs.innerText = "The previous palindrome was "+ph1 + "days behind on " +prevda.day + " " + prevda.month + " " +prevda.year;
+
+
+                        }
+
+                    }else{
+                        rx= chl;
+                        if(rx ===1 ){
+                            outputs.innerText = "The next palindrome is "+chl + " day further on " +date.day + " " + date.month + " " +date.year;
+                        }else{
+                            outputs.innerText = "The next palindrome is "+chl + " days further on  " +date.day + " " + date.month + " " +date.year;
+
+                        }
+                    
+                    }
+
+
 
                    
                     
@@ -66,7 +84,6 @@ function getPrevDate(date){
 
         }else{
 
-            console.log("in else loop");
             if(day < 1)
             {
                 day = daysInMonth[month -2];
@@ -131,12 +148,23 @@ function getnextDate(date){
 
 function prevPalindrome(date){
     var prevDate =  getPrevDate(date);
+    var ctr = 0;
+
+    while(1){
+        ctr++;
+        var isPalindrome = checkPalindromeForAllForats(prevDate);
+
+        if(isPalindrome){
+        
+
+            break;
+        }
+        prevDate = getPrevDate(prevDate);
+    }
+    return [ctr,prevDate];  
 }
 
 function nextPalindrome(date){
-
-    
-
     var nextDate = getnextDate(date);
     var ctr=0;
 
