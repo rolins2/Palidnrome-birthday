@@ -14,9 +14,87 @@ submitbtn.addEventListener("click", function clickEventHandler(){
                 }
                 else{
                     console.log("Not a palindrme");
+
+                    var [chl,date] = nextPalindrome(d)
+                    console.log(chl);
                 }
     
 })
+
+function isLeapYear(year){
+    if(year%400 ===0){
+        return true;
+    }
+    if(year % 100 ===0){
+        return false;
+    }
+    if(year % 4 ===0){
+        return true;
+    }
+    return false;
+
+}
+
+function getnextDate(date){
+
+    var day = date.day +1;
+    var month = date.month;
+    var year = date.year;
+
+    var daysInMonth = [31,28,31,30,31,30,31,31,30,31,30,31];
+
+    if(month ===2){
+        if(isLeapYear){
+            if(day > 29){
+                day = 1;
+                month = 3;
+            }
+        } else{
+            if(day > 28){
+                day = 1;
+                month = 3;
+            }
+        }
+    } else{
+        if (day > daysInMonth[month-1]){
+            day = 1;
+            month ++;
+        }
+    }
+    if(month > 12){
+        month = 1;
+        year++;
+
+    }
+
+    return {
+       day : day,
+       month: month,
+       year: year
+    }
+
+}
+
+function nextPalindrome(date){
+
+    var nextDate = getnextDate(date);
+    var ctr=0;
+
+    while(1){
+        ctr++;
+        var dateStr = dateToString(nextDate);
+        var reusltList = checkPalindromeForAllForats(dateStr);
+
+        for(var i =0;i< reusltList.length;i++){
+            if(reusltList){
+                return[ctr,nextDate];
+            }
+        }
+        nextDate = getnextDate(nextDate);
+
+    }
+
+}
 
 function getDate(){
     var dates = birthdate.value;
